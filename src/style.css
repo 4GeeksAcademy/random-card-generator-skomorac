@@ -46,17 +46,17 @@ body {
 .top-left,
 .bottom-right {
   position: absolute;
-  font-size: 50px;
+  font-size: 100px;
   color: red; /* Change color as needed */
 }
 
 .top-left {
-  top: -10px;
+  top: -30px;
   left: 10px;
 }
 
 .bottom-right {
-  bottom: -10px;
+  bottom: -30px;
   right: 10px;
   transform: rotate(180deg); /* Flip the bottom-right sign */
 }

@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
       "J",
       "Q",
       "K",
-      "A",
+      "A"
     ];
     const randomValue = getRandomItem(values);
 
@@ -123,19 +123,19 @@ document.addEventListener("DOMContentLoaded", function() {
     cardElement.style.width = cardWidth;
 
     // Update button dimensions
-    buttons.forEach((button) => {
+    buttons.forEach(button => {
       button.style.width = cardWidth;
     });
 
     // Update input dimensions
-    inputs.forEach((input) => {
+    inputs.forEach(input => {
       input.style.width = cardWidth;
     });
   }
 
   // Event listener for Enter key press
-  inputs.forEach((input) => {
-    input.addEventListener("keydown", (event) => {
+  inputs.forEach(input => {
+    input.addEventListener("keydown", event => {
       if (event.key === "Enter") {
         updateDimensions();
       }
