@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
       "J",
       "Q",
       "K",
-      "A"
+      "A",
     ];
     const randomValue = getRandomItem(values);
 
@@ -67,13 +67,13 @@ document.addEventListener("DOMContentLoaded", function() {
   let newCardButton = document.getElementById("newCardBtn");
   newCardButton.addEventListener("click", assignRandomCard);
 
+  // Implementation of auto generate button
   // Function to auto-generate a random card every 1 second
   function autoGenerateCard() {
     // Call the assignRandomCard function to generate a new card
     assignRandomCard();
   }
 
-  // Implementation of auto generate button
   // Set up a variable to store the interval ID
   let autoGenerateInterval;
 
@@ -123,19 +123,19 @@ document.addEventListener("DOMContentLoaded", function() {
     cardElement.style.width = cardWidth;
 
     // Update button dimensions
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       button.style.width = cardWidth;
     });
 
     // Update input dimensions
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       input.style.width = cardWidth;
     });
   }
 
   // Event listener for Enter key press
-  inputs.forEach(input => {
-    input.addEventListener("keydown", event => {
+  inputs.forEach((input) => {
+    input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         updateDimensions();
       }
