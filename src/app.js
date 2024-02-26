@@ -3,12 +3,55 @@ import "bootstrap";
 import "./style.css";
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Array of available signs
   const signs = ["♥", "♦", "♣", "♠"];
+  const values = [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "J",
+    "Q",
+    "K",
+    "A"
+  ];
   const card = document.querySelector(".card");
   const topLeft = document.querySelector(".top-left");
   const bottomRight = document.querySelector(".bottom-right");
   const cardValue = document.querySelector(".card-value");
+  const buttons = document.querySelectorAll(".btn");
+  const inputs = document.querySelectorAll("input");
+  const newCardButton = document.getElementById("newCardBtn");
+  const autoGenerateButton = document.getElementById("autoGenerateBtn");
+
+  // Event listeners
+  newCardButton.addEventListener("click", assignRandomCard);
+
+  autoGenerateButton.addEventListener("click", function() {
+    if (autoGenerateInterval) {
+      stopAutoGenerate();
+      autoGenerateButton.textContent = "Auto Generate Card Every 1 Second";
+    } else {
+      startAutoGenerate();
+      autoGenerateButton.textContent = "Stop Auto Generation";
+    }
+  });
+
+  // event listener for input fields
+  inputs.forEach(input => {
+    input.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        updateDimensions();
+      }
+    });
+  });
+
+  // Functions
+  ////////////////////////////////////////////////////////////////////////////////
 
   // Function to get a random item from an array
   function getRandomItem(array) {
@@ -36,21 +79,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Get random value
-    const values = [
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "J",
-      "Q",
-      "K",
-      "A"
-    ];
     const randomValue = getRandomItem(values);
 
     // Set color for value
@@ -62,11 +90,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // Call the function on page load
   assignRandomCard();
 
-  // Implementation of new card button
-  let newCardButton = document.getElementById("newCardBtn");
-  newCardButton.addEventListener("click", assignRandomCard);
-
-  // Implementation of auto generate button
   // Function to auto-generate a random card every 1 second
   function autoGenerateCard() {
     // Call the assignRandomCard function to generate a new card
@@ -92,33 +115,14 @@ document.addEventListener("DOMContentLoaded", function() {
     autoGenerateInterval = null;
   }
 
-  // Event listener for the "Auto Generate Card" button
-  let autoGenerateButton = document.getElementById("autoGenerateBtn");
-  autoGenerateButton.addEventListener("click", function() {
-    // Toggle auto-generating on button click
-    if (autoGenerateInterval) {
-      stopAutoGenerate();
-      autoGenerateButton.textContent = "Auto Generate Card Every 1 Second";
-    } else {
-      startAutoGenerate();
-      autoGenerateButton.textContent = "Stop Auto Generation";
-    }
-  });
-
-  // Implementation of custom height and width
-  // Get references to the elements
-  const cardElement = document.querySelector(".card");
-  const buttons = document.querySelectorAll(".btn");
-  const inputs = document.querySelectorAll("input");
-
   // Function to update dimensions
   function updateDimensions() {
     const cardHeight = document.getElementById("cardHeightInput").value + "px";
     const cardWidth = document.getElementById("cardWidthInput").value + "px";
 
     // Update card dimensions
-    cardElement.style.height = cardHeight;
-    cardElement.style.width = cardWidth;
+    card.style.height = cardHeight;
+    card.style.width = cardWidth;
 
     // Update button dimensions
     buttons.forEach(button => {
@@ -130,13 +134,4 @@ document.addEventListener("DOMContentLoaded", function() {
       input.style.width = cardWidth;
     });
   }
-
-  // Event listener for Enter key press
-  inputs.forEach(input => {
-    input.addEventListener("keydown", event => {
-      if (event.key === "Enter") {
-        updateDimensions();
-      }
-    });
-  });
 });
