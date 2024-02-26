@@ -5,6 +5,10 @@ import "./style.css";
 document.addEventListener("DOMContentLoaded", function() {
   // Array of available signs
   const signs = ["♥", "♦", "♣", "♠"];
+  const card = document.querySelector(".card");
+  const topLeft = document.querySelector(".top-left");
+  const bottomRight = document.querySelector(".bottom-right");
+  const cardValue = document.querySelector(".card-value");
 
   // Function to get a random item from an array
   function getRandomItem(array) {
@@ -13,11 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Function to assign a random sign and update colors
   function assignRandomCard() {
-    const card = document.querySelector(".card");
-    const topLeft = document.querySelector(".top-left");
-    const bottomRight = document.querySelector(".bottom-right");
-    const cardValue = document.querySelector(".card-value");
-
     // Get random sign
     const randomSign = getRandomItem(signs);
 
@@ -79,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Function to start auto-generating cards
   function startAutoGenerate() {
-    // Call autoGenerateCard immediately
     autoGenerateCard();
 
     // Set up an interval to call autoGenerateCard every 1 second
